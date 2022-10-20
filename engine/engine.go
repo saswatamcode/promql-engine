@@ -185,7 +185,7 @@ func (q *compatibilityQuery) Exec(ctx context.Context) (ret *promql.Result) {
 	ret = &promql.Result{
 		Value: promql.Vector{},
 	}
-	defer recoverEngine(q.engine.logger, q.expr, &ret.Err)
+	//defer recoverEngine(q.engine.logger, q.expr, &ret.Err)
 
 	ctx, cancel := context.WithCancel(ctx)
 	q.cancel = cancel

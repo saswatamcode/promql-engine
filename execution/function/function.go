@@ -105,11 +105,11 @@ func (o *functionOperator) Next(ctx context.Context) ([]model.StepVector, error)
 
 		for batchIndex := range vectors {
 			val := math.NaN()
-			if len(scalarVectors[batchIndex].Samples) > 0 {
+			if len(scalarVectors) > 0 && len(scalarVectors[batchIndex].Samples) > 0 {
 				val = scalarVectors[batchIndex].Samples[0]
+				o.nextOps[i].GetPool().PutStepVector(scalarVectors[batchIndex])
 			}
 			o.scalarPoints[batchIndex][scalarIndex] = val
-			o.nextOps[i].GetPool().PutStepVector(scalarVectors[batchIndex])
 		}
 		o.nextOps[i].GetPool().PutVectors(scalarVectors)
 		scalarIndex++
@@ -141,7 +141,7 @@ func (o *functionOperator) Next(ctx context.Context) ([]model.StepVector, error)
 			vector.Samples[i] = result.V
 		}
 	}
-	
+
 	return vectors, nil
 }
 
