@@ -139,11 +139,9 @@ func (o *functionOperator) Next(ctx context.Context) ([]model.StepVector, error)
 			})
 
 			vector.Samples[i] = result.V
-			o.nextOps[o.vectorIndex].GetPool().PutStepVector(vector)
 		}
 	}
-
-	o.nextOps[o.vectorIndex].GetPool().PutVectors(vectors)
+	
 	return vectors, nil
 }
 
