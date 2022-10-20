@@ -110,81 +110,61 @@ func BenchmarkRangeQuery(b *testing.B) {
 		name  string
 		query string
 	}{
-		//{
-		//	name:  "vector selector",
-		//	query: "http_requests_total",
-		//},
-		//{
-		//	name:  "sum",
-		//	query: "sum(http_requests_total)",
-		//},
-		//{
-		//	name:  "sum by pod",
-		//	query: "sum by (pod) (http_requests_total)",
-		//},
-		//{
-		//	name:  "rate",
-		//	query: "rate(http_requests_total[1m])",
-		//},
-		//{
-		//	name:  "sum rate",
-		//	query: "sum(rate(http_requests_total[1m]))",
-		//},
-		//{
-		//	name:  "sum by rate",
-		//	query: "sum by (pod) (rate(http_requests_total[1m]))",
-		//},
-		//{
-		//	name:  "binary operation with one to one",
-		//	query: `http_requests_total{container="c1"} / ignoring(container) http_responses_total`,
-		//},
-		//{
-		//	name:  "binary operation with many to one",
-		//	query: `http_requests_total / on (pod) group_left http_responses_total`,
-		//},
-		//{
-		//	name:  "binary operation with vector and scalar",
-		//	query: `http_requests_total * 10`,
-		//},
-		//{
-		//	name:  "unary negation",
-		//	query: `-http_requests_total`,
-		//},
-		//{
-		//	name:  "vector and scalar comparison",
-		//	query: `http_requests_total > 10`,
-		//},
-		//{
-		//	name:  "positive offset vector",
-		//	query: "http_requests_total offset 5m",
-		//},
-		//{
-		//	name:  "at modifier ",
-		//	query: "http_requests_total @ 600",
-		//},
-		//{
-		//	name:  "at modifier with positive offset vector",
-		//	query: "http_requests_total @ 600 offset 5m",
-		//},
 		{
-			name:  "clamp",
-			query: `clamp(http_requests_total, 5, 10)`,
+			name:  "vector selector",
+			query: "http_requests_total",
 		},
 		{
-			name:  "clamp_min",
-			query: `clamp_min(http_requests_total, 10)`,
+			name:  "sum",
+			query: "sum(http_requests_total)",
 		},
 		{
-			name:  "complex func query",
-			query: `clamp(1 - http_requests_total, 10 - 5, 10)`,
+			name:  "sum by pod",
+			query: "sum by (pod) (http_requests_total)",
 		},
 		{
-			name:  "func within func query",
-			query: `clamp(irate(http_requests_total[30s]), 10 - 5, 10)`,
+			name:  "rate",
+			query: "rate(http_requests_total[1m])",
 		},
 		{
-			name:  "aggr within func query",
-			query: `clamp(rate(http_requests_total[30s]), 10 - 5, 10)`,
+			name:  "sum rate",
+			query: "sum(rate(http_requests_total[1m]))",
+		},
+		{
+			name:  "sum by rate",
+			query: "sum by (pod) (rate(http_requests_total[1m]))",
+		},
+		{
+			name:  "binary operation with one to one",
+			query: `http_requests_total{container="c1"} / ignoring(container) http_responses_total`,
+		},
+		{
+			name:  "binary operation with many to one",
+			query: `http_requests_total / on (pod) group_left http_responses_total`,
+		},
+		{
+			name:  "binary operation with vector and scalar",
+			query: `http_requests_total * 10`,
+		},
+		{
+			name:  "unary negation",
+			query: `-http_requests_total`,
+		},
+		{
+			name:  "vector and scalar comparison",
+			query: `http_requests_total > 10`,
+		},
+		{
+			name:  "positive offset vector",
+			query: "http_requests_total offset 5m",
+		},
+		{
+			name:  "at modifier ",
+			query: "http_requests_total @ 600",
+		},
+		{
+			name:  "at modifier with positive offset vector",
+			query: "http_requests_total @ 600 offset 5m",
 		},
 	}
 
